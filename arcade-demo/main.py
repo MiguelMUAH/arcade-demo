@@ -43,7 +43,7 @@ class MenuView(arcade.View):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text("Apocalipsis", WIDTH / 2, HEIGHT / 2,
+        arcade.draw_text("Simulador de Hacienda.", WIDTH / 2, HEIGHT / 2,
                          arcade.color.DUTCH_WHITE, font_size=160, anchor_x="center", font_name="Kenney Pixel")
         arcade.draw_text("Click to play", WIDTH / 2, HEIGHT / 2 - 75,
                          arcade.color.COOL_BLACK, font_size=80, anchor_x="center", font_name="Kenney Pixel")
@@ -61,7 +61,7 @@ class InstructionView(arcade.View):
         arcade.start_render()
         arcade.draw_text("Guía rápida", WIDTH / 2, HEIGHT / 2,
                          arcade.color.BLACK, font_size=50, anchor_x="center", font_name="Kenney Pixel")
-        arcade.draw_text("Desplaza el cursor para mover el robot por encima de los edificios .Destruye todos para terminar.", WIDTH / 2, HEIGHT / 2 - 75,
+        arcade.draw_text("Desplaza el cursor para mover a la agencia tributaria .Recolecta todo el dinero que puedas.", WIDTH / 2, HEIGHT / 2 - 75,
                          arcade.color.GRAY, font_size=20, anchor_x="center", font_name="Kenney Pixel")
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
@@ -81,7 +81,7 @@ class GameView(arcade.View):
 
         # Set up the player
         self.score = 0
-        self.player_sprite = arcade.Sprite(":resources:images/animated_characters/robot/robot_walk7.png",
+        self.player_sprite = arcade.Sprite("Agencia_Tributaria.svg.png",
                                            SPRITE_SCALING)
         self.player_sprite.center_x = 50
         self.player_sprite.center_y = 50
@@ -90,8 +90,8 @@ class GameView(arcade.View):
         for i in range(10):
 
             # Create the coin instance
-            coin = arcade.Sprite("12-Moneda-de-1-euro.png", SPRITE_SCALING / 15)
-
+            coin = arcade.Sprite("12-Moneda-de-1-euro.png", SPRITE_SCALING / 20)
+            cash = arcade.Sprite("")
             # Position the coin
             coin.center_x = random.randrange(WIDTH)
             coin.center_y = random.randrange(HEIGHT)
@@ -100,7 +100,7 @@ class GameView(arcade.View):
             self.coin_list.append(coin)
 
     def on_show(self):
-        arcade.set_background_color(arcade.color.AMAZON)
+        arcade.set_background_color(arcade.color.BABY_BLUE)
 
         # Don't show the mouse cursor
         self.window.set_mouse_visible(False)
