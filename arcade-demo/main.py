@@ -183,7 +183,7 @@ class GameOverView(arcade.View):
                          font_size=15,
                          anchor_x="center")
 
-        output_total = f"Total Score: {self.window.total_score}"
+        output_total = f"Impuestos totales de la partida: {self.window.total_score}€"
         arcade.draw_text(output_total, 10, 10, arcade.color.WHITE, 14)
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
