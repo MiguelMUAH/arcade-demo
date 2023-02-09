@@ -78,6 +78,7 @@ class GameView(arcade.View):
         # Sprite lists
         self.player_list = arcade.SpriteList()
         self.coin_list = arcade.SpriteList()
+        self.cash_list=arcade.SpriteList()
 
         # Set up the player
         self.score = 0
@@ -91,13 +92,16 @@ class GameView(arcade.View):
 
             # Create the coin instance
             coin = arcade.Sprite("12-Moneda-de-1-euro.png", SPRITE_SCALING / 20)
-            cash = arcade.Sprite("")
+            cash = arcade.Sprite("07-Billete-500-euros.png", SPRITE_SCALING/30)
             # Position the coin
             coin.center_x = random.randrange(WIDTH)
             coin.center_y = random.randrange(HEIGHT)
+            cash.center_x = random.randrange(WIDTH)
+            cash.center_y = random.randrange(HEIGHT)
 
             # Add the coin to the lists
             self.coin_list.append(coin)
+            self.cash_list.append(cash)
 
     def on_show(self):
         arcade.set_background_color(arcade.color.BABY_BLUE)
@@ -110,7 +114,7 @@ class GameView(arcade.View):
         # Draw all the sprites.
         self.player_list.draw()
         self.coin_list.draw()
-
+        self.cash_list.draw()
         # Put the text on the screen.
         output = f"Score: {self.score}"
         arcade.draw_text(output, 10, 30, arcade.color.WHITE, 14)
@@ -123,21 +127,25 @@ class GameView(arcade.View):
         # Call update on all sprites (The sprites don't do much in this
         # example though.)
         self.coin_list.update()
+        self.cash_list.update()
         self.player_list.update()
 
         # Generate a list of all sprites that collided with the player.
-        hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.coin_list)
+        hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.coin_list, self.cash_list)
 
         # Loop through each colliding sprite, remove it, and add to the
         # score.
         for coin in hit_list:
             coin.kill()
-            self.score += 10
-            self.window.total_score += 10
-
+            self.score += 1
+            self.window.total_score += 1
+        for cash in hit_list:
+            cash.kill()
+            self.score += 500
+            self.window.total_score += 500
         # If we've collected all the games, then move to a "GAME_OVER"
         # state.
-        if len(self.coin_list) == 0:
+        if len(self.coin_list) and len(self.cash_list) == 0:
             game_over_view = GameOverView()
             game_over_view.time_taken = self.time_taken
             self.window.set_mouse_visible(True)
@@ -168,7 +176,7 @@ class GameOverView(arcade.View):
         arcade.draw_text("¿Quieres volver a intentarlo?", 310, 300, arcade.color.WHITE, 24, anchor_x="left", anchor_y="center", font_name="Kenney Pixel")
 
         time_taken_formatted = f"{round(self.time_taken, 2)} segundos"
-        arcade.draw_text(f"Tiempo de destrucción: {time_taken_formatted}",
+        arcade.draw_text(f"Tiempo de dinero: {time_taken_formatted}",
                          WIDTH / 2,
                          200,
                          arcade.color.GRAY,
