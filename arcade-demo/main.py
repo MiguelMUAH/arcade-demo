@@ -43,7 +43,7 @@ class MenuView(arcade.View):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text("Simulador de Hacienda.", WIDTH / 2, HEIGHT / 2,
+        arcade.draw_text("Hacienda Simulator", WIDTH / 2, HEIGHT / 2,
                          arcade.color.DUTCH_WHITE, font_size=160, anchor_x="center", font_name="Kenney Pixel")
         arcade.draw_text("Click to play", WIDTH / 2, HEIGHT / 2 - 75,
                          arcade.color.COOL_BLACK, font_size=80, anchor_x="center", font_name="Kenney Pixel")
@@ -116,9 +116,9 @@ class GameView(arcade.View):
         self.coin_list.draw()
         self.cash_list.draw()
         # Put the text on the screen.
-        output = f"Score: {self.score}"
+        output = f"Impuestos: {self.score}"+"€"
         arcade.draw_text(output, 10, 30, arcade.color.WHITE, 14)
-        output_total = f"Total Score: {self.window.total_score}"
+        output_total = f"Impuestos totales: {self.window.total_score}"+"€"
         arcade.draw_text(output_total, 10, 10, arcade.color.WHITE, 14)
 
     def on_update(self, delta_time):
