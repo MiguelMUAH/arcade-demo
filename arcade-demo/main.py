@@ -39,14 +39,14 @@ SPRITE_SCALING = 1
 
 class MenuView(arcade.View):
     def on_show(self):
-        arcade.set_background_color(arcade.color.GREEN)
+        arcade.set_background_color(arcade.color.REDWOOD)
 
     def on_draw(self):
         arcade.start_render()
         arcade.draw_text("Apocalipsis", WIDTH / 2, HEIGHT / 2,
-                         arcade.color.DUTCH_WHITE, font_size=80, anchor_x="center")
+                         arcade.color.DUTCH_WHITE, font_size=160, anchor_x="center", font_name="Kenney Pixel")
         arcade.draw_text("Click to play", WIDTH / 2, HEIGHT / 2 - 75,
-                         arcade.color.RED_BROWN, font_size=30, anchor_x="center")
+                         arcade.color.COOL_BLACK, font_size=80, anchor_x="center", font_name="Kenney Pixel")
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         instructions_view = InstructionView()
@@ -60,9 +60,9 @@ class InstructionView(arcade.View):
     def on_draw(self):
         arcade.start_render()
         arcade.draw_text("Guía rápida", WIDTH / 2, HEIGHT / 2,
-                         arcade.color.BLACK, font_size=50, anchor_x="center")
+                         arcade.color.BLACK, font_size=50, anchor_x="center", font_name="Kenney Pixel")
         arcade.draw_text("Desplaza el cursor para mover el robot por encima de los edificios .Destruye todos para terminar.", WIDTH / 2, HEIGHT / 2 - 75,
-                         arcade.color.GRAY, font_size=20, anchor_x="center")
+                         arcade.color.GRAY, font_size=20, anchor_x="center", font_name="Kenney Pixel")
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         game_view = GameView()
@@ -87,7 +87,7 @@ class GameView(arcade.View):
         self.player_sprite.center_y = 50
         self.player_list.append(self.player_sprite)
 
-        for i in range(20):
+        for i in range(30):
 
             # Create the coin instance
             coin = arcade.Sprite(":resources:images/cybercity_background/back-buildings.png", SPRITE_SCALING / 3)
@@ -132,8 +132,8 @@ class GameView(arcade.View):
         # score.
         for coin in hit_list:
             coin.kill()
-            self.score += 1
-            self.window.total_score += 1
+            self.score += 10
+            self.window.total_score += 10
 
         # If we've collected all the games, then move to a "GAME_OVER"
         # state.
@@ -164,11 +164,11 @@ class GameOverView(arcade.View):
         """
         Draw "Game over" across the screen.
         """
-        arcade.draw_text("GG", 240, 400, arcade.color.WHITE, 54, anchor_x="left", anchor_y="center")
-        arcade.draw_text("¿Quieres volver a intentarlo?", 310, 300, arcade.color.WHITE, 24, anchor_x="left", anchor_y="center")
+        arcade.draw_text("GG", 240, 400, arcade.color.WHITE, 54, anchor_x="left", anchor_y="center", font_name="Kenney Pixel")
+        arcade.draw_text("¿Quieres volver a intentarlo?", 310, 300, arcade.color.WHITE, 24, anchor_x="left", anchor_y="center", font_name="Kenney Pixel")
 
-        time_taken_formatted = f"{round(self.time_taken, 2)} seconds"
-        arcade.draw_text(f"Time taken: {time_taken_formatted}",
+        time_taken_formatted = f"{round(self.time_taken, 2)} segundos"
+        arcade.draw_text(f"Tiempo de destrucción: {time_taken_formatted}",
                          WIDTH / 2,
                          200,
                          arcade.color.GRAY,
