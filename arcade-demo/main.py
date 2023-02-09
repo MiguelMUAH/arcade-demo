@@ -87,10 +87,10 @@ class GameView(arcade.View):
         self.player_sprite.center_y = 50
         self.player_list.append(self.player_sprite)
 
-        for i in range(30):
+        for i in range(10):
 
             # Create the coin instance
-            coin = arcade.Sprite(":resources:images/cybercity_background/back-buildings.png", SPRITE_SCALING / 3)
+            coin = arcade.Sprite("12-Moneda-de-1-euro.png", SPRITE_SCALING / 15)
 
             # Position the coin
             coin.center_x = random.randrange(WIDTH)
