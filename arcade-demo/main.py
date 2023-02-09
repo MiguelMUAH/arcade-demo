@@ -78,7 +78,7 @@ class GameView(arcade.View):
         # Sprite lists
         self.player_list = arcade.SpriteList()
         self.coin_list = arcade.SpriteList()
-        self.cash_list=arcade.SpriteList()
+        self.cash_list = arcade.SpriteList()
 
         # Set up the player
         self.score = 0
@@ -131,21 +131,21 @@ class GameView(arcade.View):
         self.player_list.update()
 
         # Generate a list of all sprites that collided with the player.
-        hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.coin_list, self.cash_list)
-
+        hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.coin_list)
+        hit_list2 = arcade.check_for_collision_with_list(self.player_sprite, self.cash_list)
         # Loop through each colliding sprite, remove it, and add to the
         # score.
         for coin in hit_list:
             coin.kill()
             self.score += 1
             self.window.total_score += 1
-        for cash in hit_list:
+        for cash in hit_list2:
             cash.kill()
             self.score += 500
             self.window.total_score += 500
         # If we've collected all the games, then move to a "GAME_OVER"
         # state.
-        if len(self.coin_list) and len(self.cash_list) == 0:
+        if len(self.coin_list) == 0 and len(self.cash_list) == 0:
             game_over_view = GameOverView()
             game_over_view.time_taken = self.time_taken
             self.window.set_mouse_visible(True)
