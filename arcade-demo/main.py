@@ -39,7 +39,7 @@ SPRITE_SCALING = 1
 
 class MenuView(arcade.View):
     def on_show(self):
-        arcade.set_background_image(arcade.trim_image().)
+        arcade.set_background_color(arcade.color.REDWOOD)
 
     def on_draw(self):
         arcade.start_render()
@@ -60,9 +60,9 @@ class InstructionView(arcade.View):
     def on_draw(self):
         arcade.start_render()
         arcade.draw_text("Guía rápida", WIDTH / 2, HEIGHT / 2,
-                         arcade.color.BLACK, font_size=50, anchor_x="center", font_name="Kenney Pixel")
+                         arcade.color.BLACK, font_size=200, anchor_x="center", font_name="Kenney Pixel")
         arcade.draw_text("Desplaza el cursor para mover a la agencia tributaria .Recolecta todo el dinero que puedas.", WIDTH / 2, HEIGHT / 2 - 75,
-                         arcade.color.GRAY, font_size=20, anchor_x="center", font_name="Kenney Pixel")
+                         arcade.color.GRAY, font_size=30, anchor_x="center", font_name="Kenney Pixel")
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         game_view = GameView()
